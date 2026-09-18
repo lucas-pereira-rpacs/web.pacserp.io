@@ -7,9 +7,9 @@ export default function NavbarButtonMenu() {
       tabIndex={0}
       role="button"
       aria-label="Menu"
-      className="btn btn-ghost btn-circle drawer-button lg:hidden"
+      className="btn btn-ghost btn-circle drawer-button"
     >
-      <Icon className="fa-solid fa-bars" />
+      <Icon className="fa-solid fa-bars transition-transform is-drawer-open:rotate-180" />
     </label>
   );
 }

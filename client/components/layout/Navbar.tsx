@@ -19,6 +19,7 @@ export default function Navbar() {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
+        <NavbarButtonMenu />
         <Link to="/" className="btn btn-ghost text-xl">
           {system.data?.system.name ?? import.meta.env.DEFAULT_SYSTEM_NAME}
         </Link>
@@ -26,7 +27,6 @@ export default function Navbar() {
       <div className="navbar-end gap-2">
         <NavbarButtonPreferences />
         <NavbarButtonLogout />
-        <NavbarButtonMenu />
       </div>
     </div>
   );
