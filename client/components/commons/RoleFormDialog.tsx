@@ -5,10 +5,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
 import Button from '#components/elements/Button';
-import Form from '#components/elements/Form';
-import Input from '#components/elements/Input';
-import Label from '#components/elements/Label';
-import Text from '#components/elements/Text';
 import i18n from '#locales/i18n';
 
 type RoleFormData = { name: string };
@@ -82,13 +78,13 @@ export default function RoleFormDialog({ editingRole, closeForm }: Props) {
   return (
     <div className="modal modal-open" role="dialog" aria-modal="true">
       <div className="modal-box">
-        <Text as="h2" className="mb-4 text-xl font-bold">
-          {formTitle}
-        </Text>
-        <Form className="gap-3" noValidate onSubmit={handleSubmit(submit)}>
-          <Label htmlFor="role-name">{i18n.t('roleName')}</Label>
-          <Input id="role-name" className="input-primary w-full" {...register('name')} />
-          {errors.name && <Text className="label text-error">{errors.name.message}</Text>}
+        <h2 className="mb-4 text-xl font-bold">{formTitle}</h2>
+        <form className="fieldset gap-3" noValidate onSubmit={handleSubmit(submit)}>
+          <label className="label" htmlFor="role-name">
+            {i18n.t('roleName')}
+          </label>
+          <input id="role-name" className="input input-primary w-full" {...register('name')} />
+          {errors.name && <p className="label text-error">{errors.name.message}</p>}
           <div className="modal-action">
             <Button type="button" className="btn-ghost" disabled={isSubmitting} onClick={closeForm}>
               {i18n.t('cancel')}
@@ -102,7 +98,7 @@ export default function RoleFormDialog({ editingRole, closeForm }: Props) {
               {i18n.t('save')}
             </Button>
           </div>
-        </Form>
+        </form>
       </div>
       <button
         type="button"

@@ -54,7 +54,7 @@ or send an empty string to clear it.
 - `client/components/commons/RoleFormDialog.tsx`: role create/edit form and save logic.
 - `client/components/commons/RolePermissionsDialog.tsx`: permission selection and assignment updates.
 - `client/components/guards/`: client permission checks; server middleware enforces access.
-- `client/components/elements/`: small UI wrappers. Text defaults to a paragraph; Block, Flex, and Grid default to divs. All accept `as`, forward HTML props, and preserve supplied classes; Flex and Grid add their respective display class. Inspect other wrappers when their behavior matters.
+- `client/components/elements/Button.tsx`: shared button wrapper with loading state.
 - `server/server.ts`: Express startup, API mounts, and Vite/production SSR.
 - `server/routes/`, `server/models/`, `server/middlewares/`: API handlers, MongoDB schemas, and access/session handling.
 - `server/gateways/`, `server/jobs/`, `server/templates/`: email delivery and queued verification jobs.

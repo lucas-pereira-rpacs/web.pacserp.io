@@ -3,8 +3,6 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Permission, type Permission as PermissionValue } from '#enumerators/permission';
 import Button from '#components/elements/Button';
-import Label from '#components/elements/Label';
-import Text from '#components/elements/Text';
 import i18n from '#locales/i18n';
 
 const permissionValues = Object.values(Permission);
@@ -82,13 +80,11 @@ export default function RolePermissionsDialog({
   return (
     <div className="modal modal-open" role="dialog" aria-modal="true">
       <div className="modal-box max-h-[calc(100vh-2rem)] overflow-y-auto">
-        <Text as="h2" className="mb-1 text-xl font-bold">
-          {i18n.t('rolePermissions')}
-        </Text>
-        <Text className="mb-4 text-base-content/60">{permissionsRole.name}</Text>
+        <h2 className="mb-1 text-xl font-bold">{i18n.t('rolePermissions')}</h2>
+        <p className="mb-4 text-base-content/60">{permissionsRole.name}</p>
         <div className="grid gap-3">
           {permissionValues.map((permission) => (
-            <Label key={permission} className="cursor-pointer justify-start gap-3">
+            <label key={permission} className="label cursor-pointer justify-start gap-3">
               <input
                 type="checkbox"
                 className="checkbox checkbox-primary"
@@ -96,7 +92,7 @@ export default function RolePermissionsDialog({
                 onChange={() => togglePermission(permission)}
               />
               {i18n.t(permission)}
-            </Label>
+            </label>
           ))}
         </div>
         <div className="modal-action">

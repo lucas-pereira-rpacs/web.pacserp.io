@@ -4,15 +4,8 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'wouter';
 import { z } from 'zod';
-import Block from '#components/elements/Block';
 import Button from '#components/elements/Button';
-import Flex from '#components/elements/Flex';
-import Form from '#components/elements/Form';
-import Input from '#components/elements/Input';
-import Label from '#components/elements/Label';
-import Text from '#components/elements/Text';
 import i18n from '#locales/i18n';
-import Image from '#components/elements/Image';
 
 type RegisterFormData = {
   fullName: string;
@@ -97,71 +90,77 @@ export default function RouteRegister() {
   }
 
   return (
-    <Flex as="main" className="h-screen">
-      <Block className="basis-1/2 hidden lg:block">
+    <main className="flex h-screen">
+      <div className="basis-1/2 hidden lg:block">
         <img
           src="/api/public/system/storage/placeholder"
           alt={i18n.t('laboratoryAlt')}
           className="h-full w-full object-cover"
           loading="lazy"
         />
-      </Block>
+      </div>
 
-      <Flex className="basis-1/2 grow flex-col items-center place-content-center gap-3">
-        <Image
+      <div className="flex basis-1/2 grow flex-col items-center place-content-center gap-3">
+        <img
           src="/api/public/system/storage/logo"
           alt={i18n.t('logoAlt')}
           width="92px"
           loading="lazy"
         />
-        <Text as="h1" className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold">
           {system.data?.system.name ?? import.meta.env.DEFAULT_SYSTEM_NAME}
-        </Text>
-        <Form className="p-3 w-xs gap-3" noValidate onSubmit={handleSubmit(submit)}>
-          <Label htmlFor="full-name">{i18n.t('fullName')}</Label>
-          <Input
+        </h1>
+        <form className="fieldset p-3 w-xs gap-3" noValidate onSubmit={handleSubmit(submit)}>
+          <label className="label" htmlFor="full-name">
+            {i18n.t('fullName')}
+          </label>
+          <input
             id="full-name"
-            className="input-primary w-full"
+            className="input input-primary w-full"
             placeholder={i18n.t('fullNamePlaceholder')}
             autoComplete="name"
             {...register('fullName')}
           />
-          {errors.fullName && <Text className="label text-error">{errors.fullName.message}</Text>}
+          {errors.fullName && <p className="label text-error">{errors.fullName.message}</p>}
 
-          <Label htmlFor="phone-number">{i18n.t('phoneNumber')}</Label>
-          <Input
+          <label className="label" htmlFor="phone-number">
+            {i18n.t('phoneNumber')}
+          </label>
+          <input
             type="tel"
             id="phone-number"
-            className="input-primary w-full"
+            className="input input-primary w-full"
             autoComplete="tel"
             maxLength={50}
             {...register('phoneNumber')}
           />
-          {errors.phoneNumber && (
-            <Text className="label text-error">{errors.phoneNumber.message}</Text>
-          )}
+          {errors.phoneNumber && <p className="label text-error">{errors.phoneNumber.message}</p>}
 
-          <Label htmlFor="email">{i18n.t('email')}</Label>
-          <Input
+          <label className="label" htmlFor="email">
+            {i18n.t('email')}
+          </label>
+          <input
             type="email"
             id="email"
-            className="input-primary w-full"
+            className="input input-primary w-full"
             placeholder={i18n.t('emailPlaceholder')}
             autoComplete="email"
             {...register('email')}
           />
-          {errors.email && <Text className="label text-error">{errors.email.message}</Text>}
+          {errors.email && <p className="label text-error">{errors.email.message}</p>}
 
-          <Label htmlFor="password">{i18n.t('password')}</Label>
-          <Input
+          <label className="label" htmlFor="password">
+            {i18n.t('password')}
+          </label>
+          <input
             type="password"
             id="password"
-            className="input-primary w-full"
+            className="input input-primary w-full"
             placeholder={i18n.t('passwordPlaceholder')}
             autoComplete="new-password"
             {...register('password')}
           />
-          {errors.password && <Text className="label text-error">{errors.password.message}</Text>}
+          {errors.password && <p className="label text-error">{errors.password.message}</p>}
 
           <Button
             type="submit"
@@ -172,15 +171,12 @@ export default function RouteRegister() {
           >
             {i18n.t('register')}
           </Button>
-        </Form>
+        </form>
         <Link href="/login">
           {i18n.t('alreadyHaveAccount')}
-          <Text as="span" className="link link-primary">
-            {' '}
-            {i18n.t('login')}
-          </Text>
+          <span className="link link-primary"> {i18n.t('login')}</span>
         </Link>
-      </Flex>
-    </Flex>
+      </div>
+    </main>
   );
 }

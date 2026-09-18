@@ -5,10 +5,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
 import Button from '#components/elements/Button';
-import Form from '#components/elements/Form';
-import Input from '#components/elements/Input';
-import Label from '#components/elements/Label';
-import Text from '#components/elements/Text';
 import i18n from '#locales/i18n';
 
 type UserFormData = {
@@ -119,52 +115,60 @@ export default function UserFormDialog({ editingUser, closeForm, roles, isRoot }
   return (
     <div className="modal modal-open" role="dialog" aria-modal="true">
       <div className="modal-box">
-        <Text as="h2" className="mb-4 text-xl font-bold">
-          {formTitle}
-        </Text>
-        <Form className="gap-3" noValidate onSubmit={handleSubmit(submit)}>
-          <Label htmlFor="user-full-name">{i18n.t('fullName')}</Label>
-          <Input id="user-full-name" className="input-primary w-full" {...register('fullName')} />
-          {errors.fullName && <Text className="label text-error">{errors.fullName.message}</Text>}
+        <h2 className="mb-4 text-xl font-bold">{formTitle}</h2>
+        <form className="fieldset gap-3" noValidate onSubmit={handleSubmit(submit)}>
+          <label className="label" htmlFor="user-full-name">
+            {i18n.t('fullName')}
+          </label>
+          <input
+            id="user-full-name"
+            className="input input-primary w-full"
+            {...register('fullName')}
+          />
+          {errors.fullName && <p className="label text-error">{errors.fullName.message}</p>}
 
-          <Label htmlFor="user-phone-number">{i18n.t('phoneNumber')}</Label>
-          <Input
+          <label className="label" htmlFor="user-phone-number">
+            {i18n.t('phoneNumber')}
+          </label>
+          <input
             type="tel"
             id="user-phone-number"
-            className="input-primary w-full"
+            className="input input-primary w-full"
             autoComplete="tel"
             maxLength={50}
             {...register('phoneNumber')}
           />
-          {errors.phoneNumber && (
-            <Text className="label text-error">{errors.phoneNumber.message}</Text>
-          )}
+          {errors.phoneNumber && <p className="label text-error">{errors.phoneNumber.message}</p>}
 
-          <Label htmlFor="user-email">{i18n.t('email')}</Label>
-          <Input
+          <label className="label" htmlFor="user-email">
+            {i18n.t('email')}
+          </label>
+          <input
             type="email"
             id="user-email"
-            className="input-primary w-full"
+            className="input input-primary w-full"
             {...register('email')}
           />
-          {errors.email && <Text className="label text-error">{errors.email.message}</Text>}
+          {errors.email && <p className="label text-error">{errors.email.message}</p>}
 
-          <Label htmlFor="user-password">{i18n.t('password')}</Label>
-          <Input
+          <label className="label" htmlFor="user-password">
+            {i18n.t('password')}
+          </label>
+          <input
             type="password"
             id="user-password"
-            className="input-primary w-full"
+            className="input input-primary w-full"
             autoComplete="new-password"
             placeholder={passwordPlaceholder}
             {...register('password')}
           />
-          {errors.password && <Text className="label text-error">{errors.password.message}</Text>}
+          {errors.password && <p className="label text-error">{errors.password.message}</p>}
 
-          <Text className="label">{i18n.t('roles')}</Text>
+          <p className="label">{i18n.t('roles')}</p>
           {roles
             .filter((role) => isRoot || role.name !== 'root')
             .map((role) => (
-              <Label key={role.id} className="cursor-pointer justify-start gap-3">
+              <label key={role.id} className="label cursor-pointer justify-start gap-3">
                 <input
                   type="checkbox"
                   className="checkbox checkbox-primary"
@@ -172,7 +176,7 @@ export default function UserFormDialog({ editingUser, closeForm, roles, isRoot }
                   {...register('roles')}
                 />
                 {role.name}
-              </Label>
+              </label>
             ))}
 
           <div className="modal-action">
@@ -188,7 +192,7 @@ export default function UserFormDialog({ editingUser, closeForm, roles, isRoot }
               {i18n.t('save')}
             </Button>
           </div>
-        </Form>
+        </form>
       </div>
       <button
         type="button"

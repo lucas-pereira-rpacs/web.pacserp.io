@@ -1,6 +1,5 @@
 import type { FormEvent } from 'react';
 import Button from '#components/elements/Button';
-import Icon from '#components/elements/Icon';
 import i18n from '#locales/i18n';
 
 export default function NavbarButtonPreferences() {
@@ -35,7 +34,7 @@ export default function NavbarButtonPreferences() {
           aria-label={i18n.t('preferences')}
           onClick={open}
         >
-          <Icon className="fa-solid fa-gear" />
+          <i aria-hidden="true" className="fa-solid fa-gear" />
         </Button>
       </div>
       <dialog id="preferences-dialog" className="modal" aria-labelledby="preferences-dialog-title">
@@ -46,7 +45,7 @@ export default function NavbarButtonPreferences() {
               className="btn-sm btn-circle btn-ghost absolute top-2 right-2"
               aria-label={i18n.t('close')}
             >
-              <Icon className="fa-solid fa-xmark" />
+              <i aria-hidden="true" className="fa-solid fa-xmark" />
             </Button>
           </form>
           <h2 id="preferences-dialog-title" className="text-lg font-bold">

@@ -1,8 +1,5 @@
 import clsx from 'clsx';
 import { resolveValue, type Toast } from 'react-hot-toast';
-import Block from '#components/elements/Block';
-import Icon from '#components/elements/Icon';
-import Text from '#components/elements/Text';
 
 type AlertProps = {
   toast: Toast;
@@ -15,10 +12,12 @@ export default function Alert({ toast }: AlertProps) {
   });
 
   return (
-    <Block className={className} {...toast.ariaProps}>
-      {toast.type === 'success' && <Icon className="fa-solid fa-thumbs-up" />}
-      {toast.type === 'error' && <Icon className="fa-solid fa-circle-exclamation" />}
-      <Text as="span">{resolveValue(toast.message, toast)}</Text>
-    </Block>
+    <div className={className} {...toast.ariaProps}>
+      {toast.type === 'success' && <i aria-hidden="true" className="fa-solid fa-thumbs-up" />}
+      {toast.type === 'error' && (
+        <i aria-hidden="true" className="fa-solid fa-circle-exclamation" />
+      )}
+      <span>{resolveValue(toast.message, toast)}</span>
+    </div>
   );
 }

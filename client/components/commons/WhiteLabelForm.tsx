@@ -4,10 +4,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
 import Button from '#components/elements/Button';
-import Form from '#components/elements/Form';
-import Input from '#components/elements/Input';
-import Label from '#components/elements/Label';
-import Text from '#components/elements/Text';
 import i18n from '#locales/i18n';
 
 type WhiteLabelFormData = {
@@ -55,13 +51,17 @@ export default function WhiteLabelForm({ system }: { system: System }) {
   }
 
   return (
-    <Form className="w-full max-w-xl gap-3" noValidate onSubmit={handleSubmit(submit)}>
-      <Label htmlFor="system-name">{i18n.t('systemName')}</Label>
-      <Input id="system-name" className="input-primary w-full" {...register('name')} />
-      {errors.name && <Text className="label text-error">{errors.name.message}</Text>}
+    <form className="fieldset w-full max-w-xl gap-3" noValidate onSubmit={handleSubmit(submit)}>
+      <label className="label" htmlFor="system-name">
+        {i18n.t('systemName')}
+      </label>
+      <input id="system-name" className="input input-primary w-full" {...register('name')} />
+      {errors.name && <p className="label text-error">{errors.name.message}</p>}
 
-      <Label htmlFor="system-slogan">{i18n.t('systemSlogan')}</Label>
-      <Input id="system-slogan" className="input-primary w-full" {...register('slogan')} />
+      <label className="label" htmlFor="system-slogan">
+        {i18n.t('systemSlogan')}
+      </label>
+      <input id="system-slogan" className="input input-primary w-full" {...register('slogan')} />
 
       <Button
         type="submit"
@@ -71,6 +71,6 @@ export default function WhiteLabelForm({ system }: { system: System }) {
       >
         {i18n.t('save')}
       </Button>
-    </Form>
+    </form>
   );
 }

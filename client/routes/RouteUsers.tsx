@@ -4,8 +4,6 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Permission } from '#enumerators/permission';
 import Button from '#components/elements/Button';
-import Icon from '#components/elements/Icon';
-import Text from '#components/elements/Text';
 import MustHavePermissions from '#components/guards/MustHavePermissions';
 import Drawer from '#components/layout/Drawer';
 import i18n from '#locales/i18n';
@@ -100,19 +98,17 @@ export default function RouteUsers() {
       <Drawer>
         <main className="p-6">
           <div className="mb-6 flex items-center justify-between gap-4">
-            <Text as="h1" className="text-2xl font-bold">
-              {i18n.t('users')}
-            </Text>
+            <h1 className="text-2xl font-bold">{i18n.t('users')}</h1>
             <MustHavePermissions permissions={[Permission.UsersCreate]}>
               <Button type="button" className="btn-primary" onClick={openCreate}>
-                <Icon className="fa-solid fa-plus" />
+                <i aria-hidden="true" className="fa-solid fa-plus" />
                 {i18n.t('newUser')}
               </Button>
             </MustHavePermissions>
           </div>
 
           {users.isLoading && <span className="loading loading-spinner loading-md" />}
-          {users.isError && <Text className="text-error">{i18n.t('usersLoadFailed')}</Text>}
+          {users.isError && <p className="text-error">{i18n.t('usersLoadFailed')}</p>}
           {users.data && (
             <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100">
               <table className="table">
@@ -157,7 +153,7 @@ export default function RouteUsers() {
                                 aria-label={i18n.t('editUser')}
                                 onClick={() => openEdit(user)}
                               >
-                                <Icon className="fa-solid fa-pen" />
+                                <i aria-hidden="true" className="fa-solid fa-pen" />
                               </Button>
                             </MustHavePermissions>
                             <MustHavePermissions permissions={[Permission.UsersDelete]}>
@@ -168,7 +164,7 @@ export default function RouteUsers() {
                                 aria-label={i18n.t('deleteUser')}
                                 onClick={() => remove(user)}
                               >
-                                <Icon className="fa-solid fa-trash" />
+                                <i aria-hidden="true" className="fa-solid fa-trash" />
                               </Button>
                             </MustHavePermissions>
                           </div>

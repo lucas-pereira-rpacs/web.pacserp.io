@@ -1,9 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import toast from 'react-hot-toast';
 import Button from '#components/elements/Button';
-import Form from '#components/elements/Form';
-import Label from '#components/elements/Label';
-import Text from '#components/elements/Text';
 import i18n from '#locales/i18n';
 
 export default function WhiteLabelFormStorage() {
@@ -84,13 +81,13 @@ export default function WhiteLabelFormStorage() {
 
   return (
     <div className="mt-8 w-full max-w-xl space-y-6">
-      <Text as="h2" className="text-xl font-bold">
-        {i18n.t('images')}
-      </Text>
+      <h2 className="text-xl font-bold">{i18n.t('images')}</h2>
 
       <div className="grid xl:grid-cols-2 gap-3">
-        <Form className="gap-3" onSubmit={uploadLogo}>
-          <Label htmlFor="system-logo">{i18n.t('logo')}</Label>
+        <form className="fieldset gap-3" onSubmit={uploadLogo}>
+          <label className="label" htmlFor="system-logo">
+            {i18n.t('logo')}
+          </label>
           <div className="flex h-40 items-center justify-center rounded-box border border-base-300 bg-base-200 p-6">
             <img
               src={`/api/public/system/storage/logo?v=${logoVersion}`}
@@ -113,10 +110,12 @@ export default function WhiteLabelFormStorage() {
           >
             {i18n.t('uploadLogo')}
           </Button>
-        </Form>
+        </form>
 
-        <Form className="gap-3" onSubmit={uploadPlaceholder}>
-          <Label htmlFor="system-placeholder">{i18n.t('placeholder')}</Label>
+        <form className="fieldset gap-3" onSubmit={uploadPlaceholder}>
+          <label className="label" htmlFor="system-placeholder">
+            {i18n.t('placeholder')}
+          </label>
           <div className="overflow-hidden rounded-box border border-base-300 bg-base-200">
             <img
               src={`/api/public/system/storage/placeholder?v=${placeholderVersion}`}
@@ -139,7 +138,7 @@ export default function WhiteLabelFormStorage() {
           >
             {i18n.t('uploadPlaceholder')}
           </Button>
-        </Form>
+        </form>
       </div>
     </div>
   );

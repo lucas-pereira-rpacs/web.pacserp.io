@@ -5,8 +5,6 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Permission } from '#enumerators/permission';
 import Button from '#components/elements/Button';
-import Icon from '#components/elements/Icon';
-import Text from '#components/elements/Text';
 import MustHavePermissions from '#components/guards/MustHavePermissions';
 import Drawer from '#components/layout/Drawer';
 import i18n from '#locales/i18n';
@@ -91,12 +89,10 @@ export default function RouteRoles() {
       <Drawer>
         <main className="p-6">
           <div className="mb-6 flex items-center justify-between gap-4">
-            <Text as="h1" className="text-2xl font-bold">
-              {i18n.t('roles')}
-            </Text>
+            <h1 className="text-2xl font-bold">{i18n.t('roles')}</h1>
             <MustHavePermissions permissions={[Permission.RolesCreate]}>
               <Button type="button" className="btn-primary" onClick={openCreate}>
-                <Icon className="fa-solid fa-plus" />
+                <i aria-hidden="true" className="fa-solid fa-plus" />
                 {i18n.t('newRole')}
               </Button>
             </MustHavePermissions>
@@ -105,7 +101,7 @@ export default function RouteRoles() {
             <span className="loading loading-spinner loading-md" />
           )}
           {(roles.isError || rolePermissions.isError) && (
-            <Text className="text-error">{i18n.t('rolesLoadFailed')}</Text>
+            <p className="text-error">{i18n.t('rolesLoadFailed')}</p>
           )}
           {roles.data && rolePermissions.data && (
             <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100">
@@ -135,7 +131,7 @@ export default function RouteRoles() {
                                   aria-label={i18n.t('rolePermissions')}
                                   onClick={() => openPermissions(role)}
                                 >
-                                  <Icon className="fa-solid fa-key" />
+                                  <i aria-hidden="true" className="fa-solid fa-key" />
                                 </Button>
                               </div>
                               <Button
@@ -145,7 +141,7 @@ export default function RouteRoles() {
                                 aria-label={i18n.t('editRole')}
                                 onClick={() => openEdit(role)}
                               >
-                                <Icon className="fa-solid fa-pen" />
+                                <i aria-hidden="true" className="fa-solid fa-pen" />
                               </Button>
                             </MustHavePermissions>
                             <MustHavePermissions permissions={[Permission.RolesDelete]}>
@@ -156,7 +152,7 @@ export default function RouteRoles() {
                                 aria-label={i18n.t('deleteRole')}
                                 onClick={() => remove(role)}
                               >
-                                <Icon className="fa-solid fa-trash" />
+                                <i aria-hidden="true" className="fa-solid fa-trash" />
                               </Button>
                             </MustHavePermissions>
                           </div>

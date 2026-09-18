@@ -1,7 +1,6 @@
 import { useState, type ChangeEvent, type ReactNode } from 'react';
 import { Link } from 'wouter';
 import { Permission } from '#enumerators/permission';
-import Icon from '#components/elements/Icon';
 import MustHavePermissions from '#components/guards/MustHavePermissions';
 import i18n from '#locales/i18n';
 import Navbar from './Navbar';
@@ -60,7 +59,7 @@ export default function Drawer({ children }: Props) {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip={i18n.t('home')}
               >
-                <Icon className="fa-solid fa-house size-4" />
+                <i aria-hidden="true" className="fa-solid fa-house size-4" />
                 <span className="is-drawer-close:hidden">{i18n.t('home')}</span>
               </Link>
             </li>
@@ -71,7 +70,7 @@ export default function Drawer({ children }: Props) {
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip={i18n.t('users')}
                 >
-                  <Icon className="fa-solid fa-users size-4" />
+                  <i aria-hidden="true" className="fa-solid fa-users size-4" />
                   <span className="is-drawer-close:hidden">{i18n.t('users')}</span>
                 </Link>
               </li>
@@ -83,7 +82,7 @@ export default function Drawer({ children }: Props) {
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip={i18n.t('roles')}
                 >
-                  <Icon className="fa-solid fa-user-shield size-4" />
+                  <i aria-hidden="true" className="fa-solid fa-user-shield size-4" />
                   <span className="is-drawer-close:hidden">{i18n.t('roles')}</span>
                 </Link>
               </li>
@@ -95,7 +94,7 @@ export default function Drawer({ children }: Props) {
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip={i18n.t('whitelabel')}
                 >
-                  <Icon className="fa-solid fa-palette size-4" />
+                  <i aria-hidden="true" className="fa-solid fa-palette size-4" />
                   <span className="is-drawer-close:hidden">{i18n.t('whitelabel')}</span>
                 </Link>
               </li>

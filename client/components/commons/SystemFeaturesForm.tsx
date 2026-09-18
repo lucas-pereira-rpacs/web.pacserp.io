@@ -4,9 +4,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
 import Button from '#components/elements/Button';
-import Form from '#components/elements/Form';
-import Label from '#components/elements/Label';
-import Text from '#components/elements/Text';
 import { Feature, Features } from '#enumerators/feature';
 import i18n from '#locales/i18n';
 
@@ -53,12 +50,14 @@ export default function SystemFeaturesForm({ system }: { system: System }) {
   }
 
   return (
-    <Form className="mt-8 w-full max-w-xl gap-3" noValidate onSubmit={handleSubmit(submit)}>
-      <Text as="h2" className="text-xl font-bold">
-        {i18n.t('features')}
-      </Text>
+    <form
+      className="fieldset mt-8 w-full max-w-xl gap-3"
+      noValidate
+      onSubmit={handleSubmit(submit)}
+    >
+      <h2 className="text-xl font-bold">{i18n.t('features')}</h2>
       <div className="grid gap-3">
-        <Label htmlFor="feature-email" className="cursor-pointer justify-start gap-3">
+        <label htmlFor="feature-email" className="label cursor-pointer justify-start gap-3">
           <input
             id="feature-email"
             type="checkbox"
@@ -67,7 +66,7 @@ export default function SystemFeaturesForm({ system }: { system: System }) {
             {...register('features')}
           />
           {i18n.t('feature.email')}
-        </Label>
+        </label>
       </div>
 
       <Button
@@ -78,6 +77,6 @@ export default function SystemFeaturesForm({ system }: { system: System }) {
       >
         {i18n.t('save')}
       </Button>
-    </Form>
+    </form>
   );
 }

@@ -3,7 +3,6 @@ import { Permission } from '#enumerators/permission';
 import SystemFeaturesForm from '#components/commons/SystemFeaturesForm';
 import WhiteLabelForm from '#components/commons/WhiteLabelForm';
 import WhiteLabelFormStorage from '#components/commons/WhiteLabelFormStorage';
-import Text from '#components/elements/Text';
 import MustHavePermissions from '#components/guards/MustHavePermissions';
 import Drawer from '#components/layout/Drawer';
 import i18n from '#locales/i18n';
@@ -25,10 +24,8 @@ export default function RouteWhitelabel() {
     <MustHavePermissions permissions={[Permission.SystemUpdate]}>
       <Drawer>
         <main className="p-6">
-          <Text as="h1" className="mb-6 text-2xl font-bold">
-            {i18n.t('whitelabel')}
-          </Text>
-          {system.isError && <Text className="text-error">{i18n.t('systemLoadFailed')}</Text>}
+          <h1 className="mb-6 text-2xl font-bold">{i18n.t('whitelabel')}</h1>
+          {system.isError && <p className="text-error">{i18n.t('systemLoadFailed')}</p>}
           {system.data && <WhiteLabelForm system={system.data.system} />}
           {system.data && <SystemFeaturesForm system={system.data.system} />}
           <WhiteLabelFormStorage />

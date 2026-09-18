@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
-import Icon from '#components/elements/Icon';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -11,7 +10,7 @@ export default function Button({ children, className, isLoading = false, ...prop
   let content = children;
 
   if (isLoading) {
-    content = <Icon className="loading loading-spinner" />;
+    content = <i aria-hidden="true" className="loading loading-spinner" />;
   }
 
   return (
