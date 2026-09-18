@@ -22,8 +22,35 @@ interface User {
   updatedAt: Date;
 }
 
+interface Shift {
+  userId: import('mongoose').Types.ObjectId;
+  startAt: Date;
+  endAt: Date;
+  status: 'scheduled' | 'completed' | 'cancelled';
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 interface Role {
   name: string;
+}
+
+interface PublicShift {
+  id: string;
+  userId: string;
+  startAt: string;
+  endAt: string;
+  status: Shift['status'];
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface ShiftsResponse {
+  shifts: PublicShift[];
+}
+
+interface ShiftUsersResponse {
+  users: Pick<PublicUser, 'id' | 'fullName' | 'email' | 'phoneNumber'>[];
 }
 
 interface RolePermission {

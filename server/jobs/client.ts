@@ -12,7 +12,7 @@ const agendaClient = new Agenda({
     address: mongoUri,
     collection: 'agendaJobs',
   }),
-  name: 'web.base.io',
+  name: 'web.pacserp.io',
 });
 
 export default agendaClient;

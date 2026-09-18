@@ -11,6 +11,7 @@ const RouteHome = lazy(() => import('./routes/RouteHome'));
 const RouteWhitelabel = lazy(() => import('./routes/RouteWhitelabel'));
 const RouteUsers = lazy(() => import('./routes/RouteUsers'));
 const RouteRoles = lazy(() => import('./routes/RouteRoles'));
+const RouteShifts = lazy(() => import('./routes/RouteShifts'));
 
 function App() {
   const [location] = useLocation();
@@ -26,6 +27,7 @@ function App() {
           <Route path="/whitelabel" component={RouteWhitelabel} />
           <Route path="/users" component={RouteUsers} />
           <Route path="/roles" component={RouteRoles} />
+          <Route path="/shifts" component={RouteShifts} />
           <Route path="/login" component={RouteLogin} />
           <Route path="/register" component={RouteRegister} />
           <Route component={RouteNotFound} />

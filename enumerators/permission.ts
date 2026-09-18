@@ -1,4 +1,8 @@
 export const Permission = {
+  ShiftsRead: 'shifts.read',
+  ShiftsCreate: 'shifts.create',
+  ShiftsUpdate: 'shifts.update',
+  ShiftsDelete: 'shifts.delete',
   UsersRead: 'users.read',
   UsersCreate: 'users.create',
   UsersUpdate: 'users.update',

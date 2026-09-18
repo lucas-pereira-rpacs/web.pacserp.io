@@ -21,7 +21,7 @@ if (!isProduction) {
 
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL ?? 'info',
-  defaultMeta: { service: 'web.base.io' },
+  defaultMeta: { service: 'web.pacserp.io' },
   format: loggerFormat,
   transports: [transportConsole],
 });

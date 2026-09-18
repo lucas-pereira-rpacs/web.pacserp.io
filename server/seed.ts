@@ -15,6 +15,7 @@ export async function ensureInitialRoles() {
   const [adminResult, rootResult] = await Promise.all([
     RoleModel.updateOne({ name: 'admin' }, { $setOnInsert: { name: 'admin' } }, { upsert: true }),
     RoleModel.updateOne({ name: 'root' }, { $setOnInsert: { name: 'root' } }, { upsert: true }),
+    RoleModel.updateOne({ name: 'root' }, { $setOnInsert: { name: 'doctor' } }, { upsert: true }),
   ]);
 
   const created: string[] = [];
@@ -34,6 +35,10 @@ export async function ensureInitialPermissions() {
     RoleModel.findOne({ name: 'root' }).orFail(),
   ]);
   const adminPermissions = [
+    Permission.ShiftsRead,
+    Permission.ShiftsCreate,
+    Permission.ShiftsUpdate,
+    Permission.ShiftsDelete,
     Permission.UsersRead,
     Permission.UsersCreate,
     Permission.UsersUpdate,
@@ -46,7 +51,6 @@ export async function ensureInitialPermissions() {
   }));
 
   await RolePermissionModel.syncIndexes();
-  await RolePermissionModel.deleteMany({ permission: { $nin: Object.values(Permission) } });
   await RolePermissionModel.deleteMany({ role_id: rootRole._id });
   const result = await RolePermissionModel.bulkWrite(
     assignments.map((assignment) => ({
@@ -128,11 +132,11 @@ export async function ensureInitialSystem() {
   let systemSlogan = process.env.SYSTEM_SLOGAN;
 
   if (!systemName) {
-    systemName = 'Web Base';
+    systemName = 'PACS ERP';
   }
 
   if (!systemSlogan) {
-    systemSlogan = 'A clean foundation for web applications';
+    systemSlogan = 'Controle Total';
   }
 
   const systemResult = await SystemModel.updateOne(

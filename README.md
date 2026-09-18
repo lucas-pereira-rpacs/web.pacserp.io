@@ -1,11 +1,11 @@
-# Web Base
+# PACS ERP web
 
 ## Environment variables
 
 Set `MONGODB_URI` to a MongoDB connection string before starting the server:
 
 ```env
-MONGODB_URI=mongodb://127.0.0.1:27017/web-base-io
+MONGODB_URI=mongodb://127.0.0.1:27017/web-pacserp-io
 AZURE_STORAGE_CONNECTION_STRING=UseDevelopmentStorage=true
 SESSION_SECRET=replace-with-at-least-32-random-characters
 ```
@@ -49,7 +49,18 @@ or send an empty string to clear it.
 
 ## Architecture
 
+Shift management is available at `/shifts`. Users with `shifts.read` can list shifts;
+`shifts.create`, `shifts.update`, and `shifts.delete` control assignment, editing, and
+deletion. Admins receive these permissions during startup seeding. The form uses
+local dates and times and sends ISO timestamps to the API. End must be after start;
+overnight shifts are supported.
+
+The `/api/shifts` API supports GET/POST on the collection and GET/PUT/DELETE on
+`/:id`. GET `/api/shifts/users` provides names and emails for the user selector
+under `shifts.read`. Existing shifts retain their user ID if a user is deleted.
+
 - `client/routes/`: page queries, tables, pagination, and page actions.
+- `client/components/commons/ShiftFormDialog.tsx`: shift assignment and editing.
 - `client/components/commons/UserFormDialog.tsx`: user create/edit form and save logic.
 - `client/components/commons/RoleFormDialog.tsx`: role create/edit form and save logic.
 - `client/components/commons/RolePermissionsDialog.tsx`: permission selection and assignment updates.

@@ -13,7 +13,7 @@ export default async function sendVerification(userId: string, locale?: string) 
   let from = process.env.MAIL_FROM;
   if (process.env.NODE_ENV !== 'production') {
     appUrl ||= 'http://localhost:5173';
-    from ||= 'Web Base <no-reply@localhost>';
+    from ||= 'PACS ERP <no-reply@localhost>';
   }
   if (!appUrl || !from) {
     throw new Error('APP_URL and MAIL_FROM must be set');

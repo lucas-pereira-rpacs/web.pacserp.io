@@ -87,6 +87,18 @@ export default function Drawer({ children }: Props) {
                 </Link>
               </li>
             </MustHavePermissions>
+            <MustHavePermissions permissions={[Permission.ShiftsRead]}>
+              <li>
+                <Link
+                  href="/shifts"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip={i18n.t('shifts')}
+                >
+                  <i aria-hidden="true" className="fa-solid fa-calendar size-4" />
+                  <span className="is-drawer-close:hidden">{i18n.t('shifts')}</span>
+                </Link>
+              </li>
+            </MustHavePermissions>
             <MustHavePermissions permissions={[Permission.SystemUpdate]}>
               <li>
                 <Link
